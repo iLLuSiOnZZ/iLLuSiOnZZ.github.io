@@ -896,7 +896,7 @@
         <li><a href="#achievements">achievements</a></li>
         <li><a href="#contact">contact</a></li>
     </ul>
-    <a href="mailto:atalmorning@gmail.com" class="nav-cta" onclick="handleEmail(event)">Hire Me ↗</a>
+    <a href="mailto:atalmorning@gmail.com" class="nav-cta">Hire Me ↗</a>
 </nav>
 
 <!-- HERO -->
@@ -932,7 +932,7 @@
     <div class="about-grid">
         <div class="about-body rv">
             <p>
-                I studied <strong>Chemical Engineering</strong> at <span class="hl">IIT Roorkee</span>, but software has always been my real home. The unconventional path made me scrappier and more self-driven: I taught myself everything from competitive programming to production GenAI systems, building real things alongside coursework.
+                I studied at <span class="hl">IIT Roorkee</span>, but software has always been my real home. The unconventional path made me scrappier and more self-driven: I taught myself everything from competitive programming to production GenAI systems, building real things alongside coursework.
             </p>
             <p>
                 My sweet spot is <strong>backend systems and applied AI</strong> — designing graph-based LLM orchestration one day, optimizing data pipelines the next. I shipped a production recommendation engine at <strong>Bidgely</strong>, built tools used by 600+ participants, and I still grind CP problems just for fun.
@@ -1155,10 +1155,24 @@
             </div>
         </div>
 
-    </div>
-</section>
-
-<!-- ACHIEVEMENTS -->
+        <div class="pc rv d4" data-cat="cv tools fullstack">
+            <div class="pc-top">
+                <div class="pc-icon" style="background:rgba(255,184,0,0.08)">🖐️</div>
+                <a href="https://github.com/iLLuSiOnZZ/handboard" target="_blank" class="pc-link">↗</a>
+            </div>
+            <div class="pc-name">HandBoard</div>
+            <div class="pc-org">Personal · github.com/iLLuSiOnZZ/handboard</div>
+            <p class="pc-desc">
+                Excalidraw-style whiteboard controlled entirely by hand gestures — no mouse, no touch. Real-time gesture classification (draw, erase, drag, pause) via MediaPipe Hands with exponential smoothing to reduce jitter. Runs fully in-browser, no server.
+            </p>
+            <div class="pc-tech">
+                <span class="tt">React 18</span>
+                <span class="tt">MediaPipe Hands</span>
+                <span class="tt">HTML5 Canvas</span>
+                <span class="tt">Vite</span>
+                <span class="tt">Computer Vision</span>
+            </div>
+        </div>
 <section id="achievements">
     <div class="sec-label">05 — achievements</div>
     <h2 class="sec-title">Milestones</h2>
@@ -1233,7 +1247,7 @@
                 Also happy to chat about interesting problems, collaborations, or the latest CP contest.
             </p>
             <div class="clinks">
-                <a href="mailto:atalmorning@gmail.com" class="clink" id="email-link" onclick="handleEmail(event)">
+                <a href="mailto:atalmorning@gmail.com" class="clink">
                     <span class="clink-icon">✉</span>
                     <span id="email-label">atalmorning@gmail.com</span>
                 </a>
@@ -1281,21 +1295,6 @@
 </footer>
 
 <script>
-// ========== MAILTO WITH CLIPBOARD FALLBACK ==========
-function handleEmail(e) {
-    const email = 'atalmorning@gmail.com';
-    // Try mailto first (let it proceed naturally)
-    // Also copy to clipboard as fallback
-    if (navigator.clipboard) {
-        setTimeout(() => {
-            navigator.clipboard.writeText(email).then(() => {
-                const lbl = document.getElementById('email-label');
-                if (lbl) { lbl.textContent = 'Copied to clipboard!'; setTimeout(() => lbl.textContent = email, 2000); }
-            }).catch(() => {});
-        }, 300);
-    }
-}
-
 // ========== CURSOR ==========
 const cur = document.getElementById('cur');
 const ring = document.getElementById('ring');
