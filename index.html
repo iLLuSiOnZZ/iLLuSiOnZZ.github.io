@@ -535,22 +535,24 @@
             color: var(--purple);
             border: 1px solid rgba(168,85,247,0.18);
         }
-        .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+        .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
         .exp-bullets li {
             font-size: 0.93rem;
             color: var(--text-muted);
-            line-height: 1.75;
-            display: flex;
-            gap: 1rem;
+            line-height: 1.8;
+            position: relative;
+            padding-left: 1.4rem;
         }
         .exp-bullets li::before {
             content: '▸';
             color: var(--cyan);
-            flex-shrink: 0;
-            margin-top: 2px;
+            position: absolute;
+            left: 0;
+            top: 1px;
             font-family: var(--font-mono);
+            font-size: 0.85rem;
         }
-        .exp-bullets strong { color: var(--text); }
+        .exp-bullets strong { color: var(--text); font-weight: 600; }
 
         /* PROJECTS */
         #projects { background: var(--bg-card); }
@@ -894,14 +896,14 @@
         <li><a href="#achievements">achievements</a></li>
         <li><a href="#contact">contact</a></li>
     </ul>
-    <a href="mailto:atalmorning@gmail.com" class="nav-cta">Hire Me ↗</a>
+    <a href="mailto:atalmorning@gmail.com" class="nav-cta" onclick="handleEmail(event)">Hire Me ↗</a>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
     <canvas id="particle-canvas"></canvas>
     <div class="hero-content">
-        <div class="hero-eyebrow">IIT Roorkee · Chemical Engineering · 2026</div>
+        <div class="hero-eyebrow">SDE · GenAI · Backend · Open to Roles</div>
         <h1 class="hero-name">
             <span class="line1">ATAL</span>
             <span class="line2">MISHRA</span>
@@ -920,10 +922,7 @@
             <a href="mailto:atalmorning@gmail.com" class="btn btn-ghost">Email ↗</a>
         </div>
     </div>
-    <div class="hero-scroll-hint">
-        <div class="scroll-line"></div>
-        <span class="scroll-label">scroll</span>
-    </div>
+
 </section>
 
 <!-- ABOUT -->
@@ -933,7 +932,7 @@
     <div class="about-grid">
         <div class="about-body rv">
             <p>
-                I'm a final-year <strong>Chemical Engineering</strong> student at <span class="hl">IIT Roorkee</span> — but software has always been my real home. The unconventional path made me scrappier and more self-driven: I taught myself everything from competitive programming to production GenAI systems while keeping up with engineering coursework.
+                I studied <strong>Chemical Engineering</strong> at <span class="hl">IIT Roorkee</span>, but software has always been my real home. The unconventional path made me scrappier and more self-driven: I taught myself everything from competitive programming to production GenAI systems, building real things alongside coursework.
             </p>
             <p>
                 My sweet spot is <strong>backend systems and applied AI</strong> — designing graph-based LLM orchestration one day, optimizing data pipelines the next. I shipped a production recommendation engine at <strong>Bidgely</strong>, built tools used by 600+ participants, and I still grind CP problems just for fun.
@@ -1194,12 +1193,7 @@
             <div class="ach-val">AIR 4088</div>
             <div class="ach-detail">Out of <b>1.5M+</b> candidates</div>
         </div>
-        <div class="ach-card edu rv d2">
-            <div class="ach-emoji">🏛️</div>
-            <div class="ach-platform">IIT Roorkee</div>
-            <div class="ach-val">7.90</div>
-            <div class="ach-detail">CGPA · <b>B.Tech Chemical Engg</b></div>
-        </div>
+
     </div>
 </section>
 
@@ -1235,12 +1229,13 @@
         <div class="rv">
             <h2 class="contact-heading">Let's build<br><span>something.</span></h2>
             <p class="contact-sub">
-                Open to full-time SDE, Backend, and GenAI roles starting 2026.
+                Open to SDE, Backend, and GenAI roles.
                 Also happy to chat about interesting problems, collaborations, or the latest CP contest.
             </p>
             <div class="clinks">
-                <a href="mailto:atalmorning@gmail.com" class="clink">
-                    <span class="clink-icon">✉</span> atalmorning@gmail.com
+                <a href="mailto:atalmorning@gmail.com" class="clink" id="email-link" onclick="handleEmail(event)">
+                    <span class="clink-icon">✉</span>
+                    <span id="email-label">atalmorning@gmail.com</span>
                 </a>
                 <a href="https://linkedin.com/in/atal-mishra-53037b186" target="_blank" class="clink">
                     <span class="clink-icon">in</span> linkedin.com/in/atal-mishra
@@ -1282,10 +1277,25 @@
 <!-- FOOTER -->
 <footer>
     <p>Designed & built by <span>Atal Mishra</span> · 2025</p>
-    <p>IIT Roorkee · <span>Chemical Engg → Software</span></p>
+    <p>Available for <span>SDE · GenAI · Backend</span> roles</p>
 </footer>
 
 <script>
+// ========== MAILTO WITH CLIPBOARD FALLBACK ==========
+function handleEmail(e) {
+    const email = 'atalmorning@gmail.com';
+    // Try mailto first (let it proceed naturally)
+    // Also copy to clipboard as fallback
+    if (navigator.clipboard) {
+        setTimeout(() => {
+            navigator.clipboard.writeText(email).then(() => {
+                const lbl = document.getElementById('email-label');
+                if (lbl) { lbl.textContent = 'Copied to clipboard!'; setTimeout(() => lbl.textContent = email, 2000); }
+            }).catch(() => {});
+        }, 300);
+    }
+}
+
 // ========== CURSOR ==========
 const cur = document.getElementById('cur');
 const ring = document.getElementById('ring');
